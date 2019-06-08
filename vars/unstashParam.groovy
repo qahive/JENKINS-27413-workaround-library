@@ -24,11 +24,10 @@ def call(String name, String fname = null) {
                   workspace = new FilePath(channel, env['WORKSPACE'])
                 }
                 filename = fname == null ? param.getOriginalFileName() : fname
-                file = workspace.child("report.xlsx")
-				original_file = param.getFile()
-				// original_file.name = "report.xlsx"
+                file = workspace.child(filename)
+				org_file = param.getFile()
                 // file.copyFrom(param.getFile())
-                error "${original_file}"
+                error "${org_file}"
 				return filename;
             }
         }
