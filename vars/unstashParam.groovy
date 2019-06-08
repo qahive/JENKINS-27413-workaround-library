@@ -25,7 +25,7 @@ def call(String name, String fname = null) {
                 }
                 filename = fname == null ? param.getOriginalFileName() : fname
                 file = workspace.child(filename)
-                file.copyFrom(param.getFile())
+                file.copyFrom(param.getFile().replaceAll(" ", "\\ "))
                 return filename;
             }
         }
