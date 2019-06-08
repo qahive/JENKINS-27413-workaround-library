@@ -17,21 +17,14 @@ def call(String name, String fname = null) {
                 if (env['WORKSPACE'] == null) {
                     error "unstashParam: no workspace in current context"
                 }
-                if (env['NODE_NAME'].equals("master")) {
-                  workspace = new FilePath(null, env['WORKSPACE'])
-                } else {
-                  channel = Jenkins.getInstance().getComputer(env['NODE_NAME']).getChannel()
-                  workspace = new FilePath(channel, env['WORKSPACE'])
-                }
+                nodeName = env['NODE_NAME'] == 'master' ? '(master)' : env['NODE_NAME']
+                workspace = new FilePath(Jenkins.getInstance().getComputer(nodeName).getChannel(), env['WORKSPACE'])
                 filename = fname == null ? param.getOriginalFileName() : fname
                 file = workspace.child(filename)
-				// org_file = param.getFile()
                 file.copyFrom(param.getFile())
-                // rror "${param}"
-				return filename;
+                return filename;
             }
         }
     }
     error "unstashParam: No file parameter named '${name}'"
 }
-
