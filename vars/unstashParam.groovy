@@ -25,8 +25,9 @@ def call(String name, String fname = null) {
                 }
                 filename = fname == null ? param.getOriginalFileName() : fname
                 file = workspace.child(filename)
+				org_file = param.getFile()
                 // file.copyFrom(param.getFile())
-                error "${param}"
+                // rror "${param}"
 				return filename;
             }
         }
