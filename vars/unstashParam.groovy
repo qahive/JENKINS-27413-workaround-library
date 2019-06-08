@@ -24,9 +24,9 @@ def call(String name, String fname = null) {
                   workspace = new FilePath(channel, env['WORKSPACE'])
                 }
                 filename = fname == null ? param.getOriginalFileName() : fname
-                file = workspace.child(name)
+                file = workspace.child("report.xlsx")
 				original_file = param.getFile()
-				original_file.name = name
+				original_file.name = "report.xlsx"
                 // file.copyFrom(param.getFile())
                 error "${original_file}"
 				return filename;
