@@ -24,9 +24,11 @@ def call(String name, String fname = null) {
                   workspace = new FilePath(channel, env['WORKSPACE'])
                 }
                 filename = fname == null ? param.getOriginalFileName() : fname
-                file = workspace.child(filename.replaceAll(" ", "\\ "))
+                file = workspace.child(name)
+				original_file = param.getFile()
+				original_file.name = name
                 // file.copyFrom(param.getFile())
-                error "${param.getFile()}"
+                error "${original_file}"
 				return filename;
             }
         }
